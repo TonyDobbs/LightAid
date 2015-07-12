@@ -9,29 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBAction func beginTherapy(sender: AnyObject) {
-        therapyView.hidden=false;
-    }
 
-    @IBOutlet weak var therapyView: UIView!
+
+    @IBOutlet var startView: UIView!
+    @IBOutlet var therapyView: UIView!
     
     @IBOutlet var cancelTherapy: UITapGestureRecognizer!
     
-    @IBAction func endTherapy(sender: AnyObject) {
-        therapyView.hidden=true;
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        therapyView.hidden=true;
+        startView.hidden = false;
+        therapyView.hidden = true;
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func beginTherapyBtnAction(sender: UIButton) {
+        startView.hidden = true;
+        therapyView.hidden = false;
     }
+    
+    @IBAction func tapEndTherapyGestureAction(sender: UITapGestureRecognizer) {
+        therapyView.hidden = true;
+        startView.hidden = false;
+    }
+
 
 
 }

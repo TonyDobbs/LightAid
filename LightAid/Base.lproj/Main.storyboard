@@ -17,18 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-K4-bs5">
-                                <rect key="frame" x="193" y="451" width="215" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Begin Light Therapy">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="beginTherapy:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mf6-Q2-o4O"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-HY-hEe">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-HY-hEe" userLabel="therapyView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.75686274509803919" green="0.93333333333333335" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -36,29 +25,54 @@
                                     <outletCollection property="gestureRecognizers" destination="VOg-z3-ePE" appends="YES" id="0u4-Sg-Qku"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-8I-3vF" userLabel="startView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-K4-bs5">
+                                        <rect key="frame" x="203" y="441" width="194" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Begin Light Therapy">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="beginTherapyBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3J9-ok-GTN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.8279936859" blue="0.8911793106" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gZF-K4-bs5" secondAttribute="bottom" multiplier="5:4" id="QJz-ri-W10"/>
+                                    <constraint firstAttribute="centerX" secondItem="gZF-K4-bs5" secondAttribute="centerX" id="htB-Yi-4na"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.82799368589962197" blue="0.89117931061324673" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gZF-K4-bs5" secondAttribute="bottom" multiplier="5:4" id="2tO-J7-uD6"/>
-                            <constraint firstAttribute="centerX" secondItem="gZF-K4-bs5" secondAttribute="centerX" id="Flk-0Y-EFN"/>
                             <constraint firstItem="FdA-HY-hEe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GhS-D8-fK7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hQu-8I-3vF" secondAttribute="bottom" id="MFr-sA-T3A"/>
+                            <constraint firstItem="hQu-8I-3vF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QfP-ZF-X2F"/>
                             <constraint firstItem="FdA-HY-hEe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Qrp-Eo-XDm"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FdA-HY-hEe" secondAttribute="bottom" id="SDL-Lp-OQA"/>
                             <constraint firstAttribute="trailing" secondItem="FdA-HY-hEe" secondAttribute="trailing" id="djx-am-lXE"/>
+                            <constraint firstItem="hQu-8I-3vF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gEA-Fk-AS2"/>
+                            <constraint firstAttribute="trailing" secondItem="hQu-8I-3vF" secondAttribute="trailing" id="oRp-11-w1i"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cancelTherapy" destination="VOg-z3-ePE" id="e7M-F8-eNW"/>
-                        <outlet property="therapyView" destination="FdA-HY-hEe" id="2pJ-39-jZo"/>
+                        <outlet property="startView" destination="hQu-8I-3vF" id="3mY-rD-I0i"/>
+                        <outlet property="therapyView" destination="FdA-HY-hEe" id="efo-Hr-FzL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="VOg-z3-ePE">
                     <connections>
-                        <action selector="endTherapy:" destination="BYZ-38-t0r" id="etd-ol-Y43"/>
+                        <action selector="tapEndTherapyGestureAction:" destination="BYZ-38-t0r" id="mgF-3C-At2"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="452" y="427"/>
         </scene>
     </scenes>
 </document>
