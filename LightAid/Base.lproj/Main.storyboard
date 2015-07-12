@@ -17,27 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-8I-3vF" userLabel="startView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-K4-bs5">
-                                        <rect key="frame" x="203" y="441" width="194" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Begin Light Therapy">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="beginTherapyBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3J9-ok-GTN"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.8279936859" blue="0.8911793106" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="gZF-K4-bs5" secondAttribute="bottom" multiplier="5:4" id="QJz-ri-W10"/>
-                                    <constraint firstAttribute="centerX" secondItem="gZF-K4-bs5" secondAttribute="centerX" id="htB-Yi-4na"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-HY-hEe" userLabel="therapyView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
@@ -73,6 +52,27 @@
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="VOg-z3-ePE" appends="YES" id="0u4-Sg-Qku"/>
                                 </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-8I-3vF" userLabel="startView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-K4-bs5">
+                                        <rect key="frame" x="203" y="441" width="194" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Begin Light Therapy">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="beginTherapyBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3J9-ok-GTN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.8279936859" blue="0.8911793106" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gZF-K4-bs5" secondAttribute="bottom" multiplier="5:4" id="QJz-ri-W10"/>
+                                    <constraint firstAttribute="centerX" secondItem="gZF-K4-bs5" secondAttribute="centerX" id="htB-Yi-4na"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.82799368589962197" blue="0.89117931061324673" alpha="1" colorSpace="calibratedRGB"/>

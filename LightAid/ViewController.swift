@@ -62,10 +62,10 @@ class ViewController: UIViewController {
         userBrightness = UIScreen.mainScreen().brightness
         UIScreen.mainScreen().brightness = CGFloat(1.0)
     
-        //Start Therapy Timer
+        //Start Therapy Timer, Reset Time Count, & Set timerLabel
         if !timer.valid{ //prevent more than one timer on the thread
             resetTimeCount()
-            self.therapyTimerLabel.text = timeString(timeCount) //change to show clock instead of message
+            self.therapyTimerLabel.text = timeString(timeCount)
             timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval,
                 target: self,
                 selector: "timerDidEnd:",
