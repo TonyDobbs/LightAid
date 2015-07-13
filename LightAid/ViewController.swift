@@ -8,10 +8,30 @@
 
 import UIKit
 
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
+}
+
+
 class ViewController: UIViewController {
 
+    
 
     @IBOutlet var startView: UIView!
+    
+    @IBOutlet var intermittentView: UIView!
+    @IBOutlet var infoLabel: UILabel!
+    @IBOutlet var rotateImageView: UIImageView!
     
     @IBOutlet var therapyView: UIView!
     @IBOutlet var infoCancelLabel: UILabel!
@@ -34,39 +54,103 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        startView.hidden = false
-        therapyView.hidden = true
+        
+        setupStartView()
+        setupTherapyView()
+        setupIntermittentView()
+        
+        
+        showStartView()
         
         infoCancelLabel.alpha = 0
     }
     
 
     @IBAction func beginTherapyBtnAction(sender: UIButton) {
-        showInstructionsAlert()
-        
+        let statusBarOrientation = UIApplication.sharedApplication().statusBarOrientation
+        if (statusBarOrientation == UIInterfaceOrientation.Portrait || statusBarOrientation == UIInterfaceOrientation.PortraitUpsideDown) {
+            showIntermittentView()
+        } else {
+            startTherapySession()
+        }
     }
     
     @IBAction func tapEndTherapyGestureAction(sender: UITapGestureRecognizer) {
         endTherapySession()
     }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.currentDevice().orientation.isLandscape.boolValue {
+            println("landscape")
+            if (intermittentView.hidden == false) {
+                self.infoLabel.text = "Thank you"
+                self.rotateImageView.image = UIImage(named: "Happy-99")
+                self.rotateImageView.image = self.rotateImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                
+                var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    self.startTherapySession()
+                })
+                
+            }
+        } else {
+            println("portrait")
+        }
+    }
 
-    // MARK: Therapy Session Methods 
-    func showInstructionsAlert() {
-        let message = "For best results, rotate screen to landscape and place screen 6 inches away from face"
-        var alert = UIAlertController(title: "Instructions", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler:{ (action) -> Void in
-            self.startTherapySession()
-        }))
-        self.presentViewController(alert, animated: true, completion:nil)
+    
+    // MARK: View Handling
+    func setupStartView() {
+        
+    }
+    func setupTherapyView() {
+        
+    }
+    
+    func setupIntermittentView() {
+        intermittentView.backgroundColor = UIColor(netHex: 0xF7F7F7)
+        
+        rotateImageView.image = rotateImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        rotateImageView.tintColor = UIColor(netHex: 0x27AE60)
+        
+        
+        infoLabel.textColor = rotateImageView.tintColor
+        infoLabel.font = UIFont(name: "HelveticaNeue", size: 30.0)
+        
+        infoLabel.text = "Please rotate device to landscape"
+        
+    }
+    
+    func showStartView() {
+        intermittentView.hidden = true
+        therapyView.hidden = true
+        startView.hidden = false
 
     }
     
+    func showTherapyView() {
+        startView.hidden = true
+        intermittentView.hidden = true
+        therapyView.hidden = false
+    }
+    
+    func showIntermittentView() {
+        rotateImageView.image = UIImage(named: "Rotate To Landscape-99")
+        rotateImageView.image = rotateImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+
+        infoLabel.text = "Please rotate device to landscape"
+        
+        startView.hidden = true
+        therapyView.hidden = true
+        intermittentView.hidden = false
+    }
+
+    // MARK: Therapy Session Methods 
 
     
     func startTherapySession() {
         //Change to Therapy Screen
-        startView.hidden = true
-        therapyView.hidden = false
+        showTherapyView()
         
         //Save userSetScreenBrightnessValue and set to max
         userBrightness = UIScreen.mainScreen().brightness
@@ -142,8 +226,7 @@ class ViewController: UIViewController {
         timer.invalidate()
         
         //Change to StartScreen
-        therapyView.hidden = true;
-        startView.hidden = false;
+        showStartView()
         
         //Revert back to user set brightness
         UIScreen.mainScreen().brightness = userBrightness;
@@ -186,5 +269,6 @@ class ViewController: UIViewController {
     }
 
 
-
+    
+    
 }

@@ -85,22 +85,56 @@
                                     <outletCollection property="gestureRecognizers" destination="VOg-z3-ePE" appends="YES" id="0u4-Sg-Qku"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bY-jc-D1J" userLabel="intermittentView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="infoLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xtu-ps-mTG">
+                                        <rect key="frame" x="265" y="289" width="71" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rotate To Landscape-99" translatesAutoresizingMaskIntoConstraints="NO" id="YJk-MJ-m6E">
+                                        <rect key="frame" x="275" y="194" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="KuE-BZ-kGl"/>
+                                            <constraint firstAttribute="height" constant="50" id="XCb-MQ-86Z"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="Xtu-ps-mTG" secondAttribute="centerX" id="8NG-6v-yuM"/>
+                                    <constraint firstAttribute="centerY" secondItem="Xtu-ps-mTG" secondAttribute="centerY" id="BzT-zo-ECI"/>
+                                    <constraint firstItem="Xtu-ps-mTG" firstAttribute="top" secondItem="YJk-MJ-m6E" secondAttribute="bottom" constant="45" id="SlG-Ms-RZR"/>
+                                    <constraint firstItem="Xtu-ps-mTG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5bY-jc-D1J" secondAttribute="leading" constant="20" id="q1d-D3-OtK"/>
+                                    <constraint firstAttribute="centerX" secondItem="YJk-MJ-m6E" secondAttribute="centerX" id="ylL-GC-1Nb"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xtu-ps-mTG" secondAttribute="trailing" constant="20" id="zTM-wR-SNe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.82799368589962197" blue="0.89117931061324673" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5bY-jc-D1J" secondAttribute="trailing" id="CcD-mH-JYh"/>
+                            <constraint firstItem="5bY-jc-D1J" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EBJ-ZJ-GJ5"/>
                             <constraint firstItem="FdA-HY-hEe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GhS-D8-fK7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hQu-8I-3vF" secondAttribute="bottom" id="MFr-sA-T3A"/>
                             <constraint firstItem="hQu-8I-3vF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QfP-ZF-X2F"/>
                             <constraint firstItem="FdA-HY-hEe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Qrp-Eo-XDm"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FdA-HY-hEe" secondAttribute="bottom" id="SDL-Lp-OQA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5bY-jc-D1J" secondAttribute="bottom" id="aSJ-qs-r3B"/>
                             <constraint firstAttribute="trailing" secondItem="FdA-HY-hEe" secondAttribute="trailing" id="djx-am-lXE"/>
                             <constraint firstItem="hQu-8I-3vF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gEA-Fk-AS2"/>
+                            <constraint firstItem="5bY-jc-D1J" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kLl-9M-iI6"/>
                             <constraint firstAttribute="trailing" secondItem="hQu-8I-3vF" secondAttribute="trailing" id="oRp-11-w1i"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cancelTherapy" destination="VOg-z3-ePE" id="e7M-F8-eNW"/>
                         <outlet property="infoCancelLabel" destination="IJV-o8-ACG" id="CAI-C6-hCw"/>
+                        <outlet property="infoLabel" destination="Xtu-ps-mTG" id="aTD-Il-dQo"/>
+                        <outlet property="intermittentView" destination="5bY-jc-D1J" id="YOu-Ff-9kq"/>
+                        <outlet property="rotateImageView" destination="YJk-MJ-m6E" id="6aH-CN-mlZ"/>
                         <outlet property="startView" destination="hQu-8I-3vF" id="3mY-rD-I0i"/>
                         <outlet property="therapyTimerLabel" destination="8Vc-5H-6aZ" id="ubO-Xv-i0o"/>
                         <outlet property="therapyView" destination="FdA-HY-hEe" id="efo-Hr-FzL"/>
@@ -116,4 +150,7 @@
             <point key="canvasLocation" x="452" y="427"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Rotate To Landscape-99" width="49" height="49"/>
+    </resources>
 </document>
