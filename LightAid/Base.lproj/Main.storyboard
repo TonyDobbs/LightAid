@@ -42,16 +42,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-HY-hEe" userLabel="therapyView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vc-5H-6aZ">
-                                        <rect key="frame" x="184" y="425" width="233" height="55"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="233" id="5yf-XM-hXf"/>
-                                            <constraint firstAttribute="height" constant="55" id="nCb-hF-BO2"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="70"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double Tap Anywhere to Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IJV-o8-ACG">
                                         <rect key="frame" x="133" y="90" width="335" height="30"/>
                                         <constraints>
@@ -59,6 +49,16 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="tj8-5c-nhY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vc-5H-6aZ">
+                                        <rect key="frame" x="166" y="425" width="268" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="268" id="5yf-XM-hXf"/>
+                                            <constraint firstAttribute="height" constant="55" id="nCb-hF-BO2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="70"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
