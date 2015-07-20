@@ -23,11 +23,14 @@ extension UIColor {
 }
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     
 
     @IBOutlet var startView: UIView!
+    @IBOutlet var pickerLabel: UILabel!
+    @IBOutlet var beginBtn: UIButton!
+    @IBOutlet var pickerView: UIPickerView!
     
     @IBOutlet var intermittentView: UIView!
     @IBOutlet var infoLabel: UILabel!
@@ -48,8 +51,9 @@ class ViewController: UIViewController {
     let timerEnd: NSTimeInterval = 60 //seconds to end the timer
     var timeCount: NSTimeInterval = 0.0 // counter for the timer
     
-    
-    
+    let minutes = Array(1...4)
+    var selectedMinute: Int = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -59,6 +63,8 @@ class ViewController: UIViewController {
         setupTherapyView()
         setupIntermittentView()
         
+        pickerView.delegate = self;
+        pickerView.dataSource = self;
         
         showStartView()
         
@@ -101,18 +107,22 @@ class ViewController: UIViewController {
     
     // MARK: View Handling
     func setupStartView() {
+        startView.backgroundColor = UIColor(netHex:ColorConstants.kStartViewBackgroundColor)
+        pickerLabel.textColor = UIColor(netHex: ColorConstants.kStartViewLabelMainColor)
+        beginBtn.tintColor = UIColor(netHex: ColorConstants.kStartViewLabelMainColor)
         
     }
     func setupTherapyView() {
-        
+        therapyView.backgroundColor = UIColor(netHex:ColorConstants.kTherapyBlue)
+        infoCancelLabel.tintColor = UIColor(netHex: ColorConstants.kTherapyViewLabelColor)
+        therapyTimerLabel.tintColor = UIColor(netHex: ColorConstants.kTherapyViewLabelColor)
     }
     
     func setupIntermittentView() {
-        intermittentView.backgroundColor = UIColor(netHex: 0xF7F7F7)
+        intermittentView.backgroundColor = UIColor(netHex: ColorConstants.kIntermittentViewBackgroundColor)
         
         rotateImageView.image = rotateImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        rotateImageView.tintColor = UIColor(netHex: 0x27AE60)
-        
+        rotateImageView.tintColor = UIColor(netHex: ColorConstants.kIntermittentViewMainColor)
         
         infoLabel.textColor = rotateImageView.tintColor
         infoLabel.font = UIFont(name: "HelveticaNeue", size: 30.0)
@@ -235,15 +245,19 @@ class ViewController: UIViewController {
 
     // MARK: Timer Methods
 
-    func timerDidEnd(timer:NSTimer){
+    func timerDidEnd(timer:NSTimer)
+    {
         //timer that counts down
         timeCount = timeCount - timeInterval
-        if timeCount <= 0 {  //test for target time reached.
+        
+        if timeCount <= 0
+        {  //test for target time reached.
             self.therapyTimerLabel.text = "Finished!"
             timer.invalidate()
             
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            dispatch_after(dispatchTime, dispatch_get_main_queue(),
+                {
                 // your function here
                 self.endTherapySession()
             })
@@ -255,12 +269,14 @@ class ViewController: UIViewController {
 
     }
 
-    func resetTimeCount() {
+    func resetTimeCount()
+    {
         timeCount = timerEnd
     }
     
     
-    func timeString(time:NSTimeInterval) -> String {
+    func timeString(time:NSTimeInterval) -> String
+    {
         //Formats the timeCount for Label output
         let minutes = Int(time) / 60
         let seconds = Int(time) % 60
@@ -268,7 +284,115 @@ class ViewController: UIViewController {
         return String(format:"%02i:%02i",minutes,seconds)
     }
 
+    //MARK: PickerView Implementation
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return minutes.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
+    {
+        if minutes[row] == 1
+        {
+            return String(format: "%d minute", minutes[row])
+        } else
+        {
+            return String(format: "%d minutes", minutes[row])
+            
+        }
+    }
+    
+//    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+//        var pickerLabel = view as! UILabel!
+//        if view == nil {  //if no label there yet
+//            pickerLabel = UILabel()
+//            //color the label's background
+//            let hue = CGFloat(row)/CGFloat(minutes.count)
+//            pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+//        }
+//        let titleData: String!
+//        if component == 0
+//        {
+//            if minutes[row] == 1
+//            {
+//                titleData = String(format: "%d minute", minutes[row])
+//            } else
+//            {
+//                titleData =  String(format: "%d minutes", minutes[row])
+//                
+//            }
+//        } else
+//        {
+//            if seconds[row] == 1
+//            {
+//                titleData = String(format: "%d second", seconds[row])
+//            } else
+//            {
+//                titleData = String(format: "%d seconds", seconds[row])
+//                
+//            }
+//        }
+//
+//        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+//        pickerLabel!.attributedText = myTitle
+//        
+//        return pickerLabel
+//        
+//    }
+    
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        var minutesStr:String!
+        
+        if minutes[row] == 1
+        {
+            minutesStr = String(format: "%d minute", minutes[row])
+        } else
+        {
+            minutesStr = String(format: "%d minutes", minutes[row])
+            
+        }
+        
+        var attributedString = NSAttributedString(string: minutesStr, attributes: [NSForegroundColorAttributeName : UIColor.redColor()])
+        
 
+        
+        return attributedString
+    }
+
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 30.0
+    }
     
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        selectedMinute = minutes[row]
+        setPickerLabel()
+        
+    }
     
+    func setPickerLabel ()
+    {
+        /*
+        SetPickerLabel
+        Formats and sets the string needed from the PickerView onto the PickerLabel
+        */
+        
+        var minutesStr: String;
+        
+        if selectedMinute == 1
+        {
+            minutesStr = String(format: "%d minute", selectedMinute)
+        } else {
+            minutesStr = String(format: "%d minutes", selectedMinute)
+        }
+        
+        pickerLabel.text = String(format: "%@", minutesStr)
+
+    }
 }

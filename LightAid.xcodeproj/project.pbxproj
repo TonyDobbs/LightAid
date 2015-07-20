@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B88B68D1B59BEF10023776E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88B68C1B59BEF10023776E /* Constants.swift */; };
 		EA56A7E31B5192C100699209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA56A7E21B5192C100699209 /* AppDelegate.swift */; };
 		EA56A7E51B5192C100699209 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA56A7E41B5192C100699209 /* ViewController.swift */; };
 		EA56A7E81B5192C100699209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA56A7E61B5192C100699209 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B88B68C1B59BEF10023776E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EA56A7DD1B5192C100699209 /* LightAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA56A7E11B5192C100699209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA56A7E21B5192C100699209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		EA56A7E01B5192C100699209 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9B88B68C1B59BEF10023776E /* Constants.swift */,
 				EA56A7E11B5192C100699209 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -215,6 +218,7 @@
 			files = (
 				EA56A7E51B5192C100699209 /* ViewController.swift in Sources */,
 				EA56A7E31B5192C100699209 /* AppDelegate.swift in Sources */,
+				9B88B68D1B59BEF10023776E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

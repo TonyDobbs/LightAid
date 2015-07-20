@@ -18,31 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-8I-3vF" userLabel="startView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-K4-bs5">
-                                        <rect key="frame" x="203" y="441" width="194" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Begin Light Therapy">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="beginTherapyBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3J9-ok-GTN"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.8279936859" blue="0.8911793106" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="gZF-K4-bs5" secondAttribute="bottom" multiplier="5:4" id="QJz-ri-W10"/>
-                                    <constraint firstAttribute="centerX" secondItem="gZF-K4-bs5" secondAttribute="centerX" id="htB-Yi-4na"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-HY-hEe" userLabel="therapyView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double Tap Anywhere to Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IJV-o8-ACG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double Tap Anywhere to Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IJV-o8-ACG" userLabel="infoCancelLabel">
                                         <rect key="frame" x="133" y="90" width="335" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="0rB-4g-ugp"/>
@@ -52,7 +31,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vc-5H-6aZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vc-5H-6aZ" userLabel="therapyTimerLabel">
                                         <rect key="frame" x="166" y="425" width="268" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="5yf-XM-hXf"/>
@@ -91,7 +70,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="infoLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xtu-ps-mTG">
                                         <rect key="frame" x="265" y="289" width="71" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rotate To Landscape-99" translatesAutoresizingMaskIntoConstraints="NO" id="YJk-MJ-m6E">
@@ -112,6 +91,54 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xtu-ps-mTG" secondAttribute="trailing" constant="20" id="zTM-wR-SNe"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-8I-3vF" userLabel="startView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-K4-bs5">
+                                        <rect key="frame" x="203" y="441" width="194" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Begin Light Therapy">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="beginTherapyBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3J9-ok-GTN"/>
+                                        </connections>
+                                    </button>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTh-uB-Qav">
+                                        <rect key="frame" x="0.0" y="210" width="600" height="180"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="190" id="ssy-Hr-snr"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAW-0g-YWL">
+                                        <rect key="frame" x="218" y="168" width="164" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="1hP-TE-XvW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.82745098039215681" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="aTh-uB-Qav" secondAttribute="centerY" id="Eal-ee-iY5"/>
+                                    <constraint firstItem="aTh-uB-Qav" firstAttribute="top" secondItem="uAW-0g-YWL" secondAttribute="bottom" constant="21" id="OkV-W6-Uhg"/>
+                                    <constraint firstAttribute="bottom" secondItem="gZF-K4-bs5" secondAttribute="bottom" multiplier="5:4" id="QJz-ri-W10"/>
+                                    <constraint firstItem="aTh-uB-Qav" firstAttribute="top" secondItem="uAW-0g-YWL" secondAttribute="bottom" constant="16" id="Xap-v0-Mqg"/>
+                                    <constraint firstAttribute="centerX" secondItem="uAW-0g-YWL" secondAttribute="centerX" id="eQf-eW-3mL"/>
+                                    <constraint firstAttribute="trailing" secondItem="aTh-uB-Qav" secondAttribute="trailing" id="hqq-CD-eSc"/>
+                                    <constraint firstAttribute="centerX" secondItem="gZF-K4-bs5" secondAttribute="centerX" id="htB-Yi-4na"/>
+                                    <constraint firstAttribute="centerX" secondItem="aTh-uB-Qav" secondAttribute="centerX" id="tYa-Tu-ZlV"/>
+                                    <constraint firstItem="aTh-uB-Qav" firstAttribute="leading" secondItem="hQu-8I-3vF" secondAttribute="leading" id="zhK-Bi-GEg"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="OkV-W6-Uhg"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.82799368589962197" blue="0.89117931061324673" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -130,10 +157,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="beginBtn" destination="gZF-K4-bs5" id="eNb-dx-FcZ"/>
                         <outlet property="cancelTherapy" destination="VOg-z3-ePE" id="e7M-F8-eNW"/>
                         <outlet property="infoCancelLabel" destination="IJV-o8-ACG" id="CAI-C6-hCw"/>
                         <outlet property="infoLabel" destination="Xtu-ps-mTG" id="aTD-Il-dQo"/>
                         <outlet property="intermittentView" destination="5bY-jc-D1J" id="YOu-Ff-9kq"/>
+                        <outlet property="pickerLabel" destination="uAW-0g-YWL" id="6f7-QL-uQj"/>
+                        <outlet property="pickerView" destination="aTh-uB-Qav" id="0bJ-Xo-WnX"/>
                         <outlet property="rotateImageView" destination="YJk-MJ-m6E" id="6aH-CN-mlZ"/>
                         <outlet property="startView" destination="hQu-8I-3vF" id="3mY-rD-I0i"/>
                         <outlet property="therapyTimerLabel" destination="8Vc-5H-6aZ" id="ubO-Xv-i0o"/>
