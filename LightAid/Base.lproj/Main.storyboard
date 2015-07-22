@@ -95,7 +95,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZF-K4-bs5">
-                                        <rect key="frame" x="203" y="441" width="194" height="39"/>
+                                        <rect key="frame" x="203" y="389" width="194" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Begin Light Therapy">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -106,13 +106,18 @@
                                         </connections>
                                     </button>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTh-uB-Qav">
-                                        <rect key="frame" x="0.0" y="210" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="219" width="600" height="162"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="190" id="ssy-Hr-snr"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="ssy-Hr-snr"/>
+                                            </mask>
+                                        </variation>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAW-0g-YWL">
-                                        <rect key="frame" x="218" y="168" width="164" height="21"/>
+                                        <rect key="frame" x="218" y="182" width="164" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="1hP-TE-XvW"/>
                                         </constraints>
@@ -120,12 +125,25 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPQ-TH-ZqY">
+                                        <rect key="frame" x="558" y="558" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="22" id="iTd-zQ-G1K"/>
+                                            <constraint firstAttribute="height" constant="22" id="jYF-sB-V1s"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.82745098039215681" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="gZF-K4-bs5" firstAttribute="top" secondItem="aTh-uB-Qav" secondAttribute="bottom" constant="8" id="0RX-tu-CKP"/>
                                     <constraint firstAttribute="centerY" secondItem="aTh-uB-Qav" secondAttribute="centerY" id="Eal-ee-iY5"/>
+                                    <constraint firstAttribute="trailing" secondItem="PPQ-TH-ZqY" secondAttribute="trailing" constant="20" id="Jat-Pk-szB"/>
+                                    <constraint firstAttribute="bottom" secondItem="PPQ-TH-ZqY" secondAttribute="bottom" constant="20" id="Jnl-JU-pd3"/>
                                     <constraint firstItem="aTh-uB-Qav" firstAttribute="top" secondItem="uAW-0g-YWL" secondAttribute="bottom" constant="21" id="OkV-W6-Uhg"/>
-                                    <constraint firstAttribute="bottom" secondItem="gZF-K4-bs5" secondAttribute="bottom" multiplier="5:4" id="QJz-ri-W10"/>
                                     <constraint firstItem="aTh-uB-Qav" firstAttribute="top" secondItem="uAW-0g-YWL" secondAttribute="bottom" constant="16" id="Xap-v0-Mqg"/>
                                     <constraint firstAttribute="centerX" secondItem="uAW-0g-YWL" secondAttribute="centerX" id="eQf-eW-3mL"/>
                                     <constraint firstAttribute="trailing" secondItem="aTh-uB-Qav" secondAttribute="trailing" id="hqq-CD-eSc"/>

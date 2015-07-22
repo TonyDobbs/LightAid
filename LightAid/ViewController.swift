@@ -22,25 +22,24 @@ extension UIColor {
     }
 }
 
-
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController {
 
     
-
+    //MARK: StartView Outlets
     @IBOutlet var startView: UIView!
     @IBOutlet var pickerLabel: UILabel!
     @IBOutlet var beginBtn: UIButton!
     @IBOutlet var pickerView: UIPickerView!
     
+    //MARK: Intermittent View Outlets
     @IBOutlet var intermittentView: UIView!
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var rotateImageView: UIImageView!
     
+    //MARK: TherapyVIew Outlets
     @IBOutlet var therapyView: UIView!
     @IBOutlet var infoCancelLabel: UILabel!
     @IBOutlet var therapyTimerLabel: UILabel!
-    
-    
     @IBOutlet var cancelTherapy: UITapGestureRecognizer!
     
     var userBrightness: CGFloat = UIScreen.mainScreen().brightness
@@ -48,16 +47,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     var timer = NSTimer() //make a timer variable, but don't do anything yet
     let timeInterval: NSTimeInterval = 0.05 //0.5x the smallest unit of time
-    let timerEnd: NSTimeInterval = 60 //seconds to end the timer
+    var timerEnd: NSTimeInterval = 60 //seconds to end the timer
     var timeCount: NSTimeInterval = 0.0 // counter for the timer
     
     let minutes = Array(1...4)
     var selectedMinute: Int = 0
 
+    //MARK: View Implementation
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         
         setupStartView()
         setupTherapyView()
@@ -72,18 +70,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
 
-    @IBAction func beginTherapyBtnAction(sender: UIButton) {
-        let statusBarOrientation = UIApplication.sharedApplication().statusBarOrientation
-        if (statusBarOrientation == UIInterfaceOrientation.Portrait || statusBarOrientation == UIInterfaceOrientation.PortraitUpsideDown) {
-            showIntermittentView()
-        } else {
-            startTherapySession()
-        }
-    }
     
-    @IBAction func tapEndTherapyGestureAction(sender: UITapGestureRecognizer) {
-        endTherapySession()
-    }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.currentDevice().orientation.isLandscape.boolValue {
@@ -95,7 +82,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
                 var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-                    self.startTherapySession()
+                    self.startTherapySession(time:self.selectedMinute)
                 })
                 
             }
@@ -135,7 +122,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         intermittentView.hidden = true
         therapyView.hidden = true
         startView.hidden = false
-
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
     }
     
     func showTherapyView() {
@@ -154,11 +142,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         therapyView.hidden = true
         intermittentView.hidden = false
     }
+    // MARK: Start View Methods
+    
+    @IBAction func beginTherapyBtnAction(sender: UIButton) {
+        let statusBarOrientation = UIApplication.sharedApplication().statusBarOrientation
+        if (statusBarOrientation == UIInterfaceOrientation.Portrait || statusBarOrientation == UIInterfaceOrientation.PortraitUpsideDown) {
+            showIntermittentView()
+        } else {
+            startTherapySession(time:selectedMinute)
+        }
+    }
 
-    // MARK: Therapy Session Methods 
+    // MARK: Therapy Session Methods
 
     
-    func startTherapySession() {
+    func startTherapySession(#time: Int) {
         //Change to Therapy Screen
         showTherapyView()
         
@@ -242,6 +240,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         UIScreen.mainScreen().brightness = userBrightness;
     }
 
+    @IBAction func tapEndTherapyGestureAction(sender: UITapGestureRecognizer) {
+        endTherapySession()
+    }
 
     // MARK: Timer Methods
 
@@ -271,6 +272,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     func resetTimeCount()
     {
+        let selectedDuration = NSTimeInterval(selectedMinute)
+        timerEnd = 60 * selectedDuration
         timeCount = timerEnd
     }
     
@@ -283,98 +286,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         //let secondFraction = Int((time - Double(seconds + (minutes*60))) * 10.0)
         return String(format:"%02i:%02i",minutes,seconds)
     }
+    
 
-    //MARK: PickerView Implementation
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
-    {
-        return 1
-    }
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
-        return minutes.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
-    {
-        if minutes[row] == 1
-        {
-            return String(format: "%d minute", minutes[row])
-        } else
-        {
-            return String(format: "%d minutes", minutes[row])
-            
-        }
-    }
-    
-//    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
-//        var pickerLabel = view as! UILabel!
-//        if view == nil {  //if no label there yet
-//            pickerLabel = UILabel()
-//            //color the label's background
-//            let hue = CGFloat(row)/CGFloat(minutes.count)
-//            pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
-//        }
-//        let titleData: String!
-//        if component == 0
-//        {
-//            if minutes[row] == 1
-//            {
-//                titleData = String(format: "%d minute", minutes[row])
-//            } else
-//            {
-//                titleData =  String(format: "%d minutes", minutes[row])
-//                
-//            }
-//        } else
-//        {
-//            if seconds[row] == 1
-//            {
-//                titleData = String(format: "%d second", seconds[row])
-//            } else
-//            {
-//                titleData = String(format: "%d seconds", seconds[row])
-//                
-//            }
-//        }
-//
-//        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
-//        pickerLabel!.attributedText = myTitle
-//        
-//        return pickerLabel
-//        
-//    }
-    
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        
-        var minutesStr:String!
-        
-        if minutes[row] == 1
-        {
-            minutesStr = String(format: "%d minute", minutes[row])
-        } else
-        {
-            minutesStr = String(format: "%d minutes", minutes[row])
-            
-        }
-        
-        var attributedString = NSAttributedString(string: minutesStr, attributes: [NSForegroundColorAttributeName : UIColor.redColor()])
-        
-
-        
-        return attributedString
-    }
-
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30.0
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        selectedMinute = minutes[row]
-        setPickerLabel()
-        
-    }
     
     func setPickerLabel ()
     {
@@ -395,4 +308,55 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         pickerLabel.text = String(format: "%@", minutesStr)
 
     }
+    
+    
+}
+
+extension ViewController: UIPickerViewDelegate
+{
+
+    
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        var minutesStr:String!
+        
+        if minutes[row] == 1
+        {
+            minutesStr = String(format: "%d minute", minutes[row])
+        } else
+        {
+            minutesStr = String(format: "%d minutes", minutes[row])
+            
+        }
+        
+        var attributedString = NSAttributedString(string: minutesStr, attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+        
+        
+        
+        return attributedString
+    }
+    
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 30.0
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        selectedMinute = minutes[row]
+        setPickerLabel()
+        
+    }
+}
+
+extension ViewController: UIPickerViewDataSource
+{
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return minutes.count
+    }
+    
 }
